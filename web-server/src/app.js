@@ -1,6 +1,7 @@
 const express= require('express')
 const path =require('path')
 const app = express()
+const port = process.evu.PORT || 3000
 const hbs =require('hbs')
 const geo=require('./utils/geocode')
 const forcast=require('./utils/forcast')
@@ -9,7 +10,7 @@ const publicDir = path.join(__dirname,'../public')
 const viewPath=path.join(__dirname,'../views/views')
 const partialPath = path.join(__dirname,'../views/partials')
 
-
+console.log('what are you doing')
 hbs.registerPartials(partialPath)
 app.set('view engine','hbs')
 app.set('views',viewPath)
@@ -89,9 +90,7 @@ app.get('/product',(req,res)=>{
         products:[]
     })
 })
-app.listen(3000,()=>{
-    console.log('server is up on 300')
-})
+
 app.get('/help/*',(req,res)=>{
     res.render('page404',{
         text:'artical not found',
@@ -105,4 +104,8 @@ app.get('*',(req,res)=>{
         text:'page not found',
         name
     })
+})
+
+app.listen(port,()=>{
+    console.log('server is up on '+port)
 })
